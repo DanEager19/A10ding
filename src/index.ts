@@ -1,4 +1,4 @@
-import { Client, Collection, Intents } from 'discord.js';
+import { Client, Collection, In } from 'discord.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
