@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema;
+const d = new Date();
 
+const Schema = mongoose.Schema;
 const MemberSchema = new Schema({
     usertag: {
         type: String
@@ -10,7 +11,14 @@ const MemberSchema = new Schema({
         type: String
     },
     meetingsattended: {
-        type: Number
+        type: Number, 
+        default: 0,
+    },
+    meetinghistory: {
+        type: [{
+            date: String,
+            default: d,
+        }]
     }
 });
 

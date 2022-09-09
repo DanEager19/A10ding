@@ -1,11 +1,11 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction } from "discord.js";
+import { attendMeeting } from "../api/controller";
 
 export const Attend = {
     data: new SlashCommandBuilder()
         .setName('attend')
-        .setDescription('Attend a meeting')
-        .addStringOption((option) => option.setName('email').setDescription('Enter your email')),
+        .setDescription('Attend a meeting'),
     async execute(interaction: CommandInteraction) {
         const d = new Date();
         const notDay = "It's not the specified meeting day silly!";
@@ -25,7 +25,7 @@ export const Attend = {
                 ephemeral: true
             });
         } else {
-            
+            attendMeeting(`${member?.nickname}`, `${member?.user.username}#${member?.user.discriminator}`);
         }
     } 
 }
