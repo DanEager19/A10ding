@@ -1,23 +1,22 @@
 import mongoose from 'mongoose';
 
-const d = new Date();
-
 const Schema = mongoose.Schema;
 const MemberSchema = new Schema({
+    userid: {
+        type: Number
+    },
     usertag: {
         type: String
     },
-    nickname: {
+    name: {
         type: String
     },
     meetingsattended: {
-        type: Number, 
-        default: 0,
+        type: Number
     },
     meetinghistory: {
         type: [{
             date: String,
-            default: d,
         }]
     }
 });
