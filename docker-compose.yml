@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  bot:
+    container_name: bot
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mongo
+    restart: always
+    networks:
+      vpcbr:
+        ipv4_address: 10.0.0.2
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=mongo
+    networks:
+      vpcbr:
+        ipv4_address: 10.0.0.3
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/16
+          gateway: 10.0.0.1

@@ -1,7 +1,9 @@
 import { Attend } from "./commands/Attend";
-import { ListAttendance } from "./commands/ListAttendance";
+import { AttendanceHistory } from "./commands/AttendanceHistory";
+import { Register } from "./commands/Register";
 
 export const commandFiles = [
     Attend, 
-    ListAttendance
+    AttendanceHistory,
+    Register
 ]

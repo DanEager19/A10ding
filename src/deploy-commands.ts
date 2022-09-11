@@ -2,7 +2,6 @@ import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import { commandFiles } from './commands';
 import dotenv from 'dotenv';
-const Member = require('./api/model');
 dotenv.config();
 
 const commands = [];
