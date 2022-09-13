@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction } from "discord.js";
-import { PrismaConnection } from "../prisma";
+import { Mongoose } from "../mongoose";
 
 export const Attend = {
     data: new SlashCommandBuilder()
@@ -22,15 +22,13 @@ export const Attend = {
                 ephemeral: true
             });
         } else {
-            const prismaClient = new PrismaConnection();
+            const controller = new Mongoose();
             const usertag = `${member?.user.username}#${member?.user.discriminator}`;
 
-            await prismaClient.attendMeeting(`${member?.id}`);
+            await controller.attendMeeting(`${member?.id}`);
             await interaction.reply({
                 content: `${usertag} attended today\'s meeting!`,
             })
-
-            await prismaClient.close();
         }
     } 
 }

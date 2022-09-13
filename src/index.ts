@@ -1,4 +1,5 @@
 import { Client, Collection, GatewayIntentBits } from 'discord.js';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { commandFiles } from './commands';
 dotenv.config();
@@ -43,4 +44,7 @@ client.on('interactionCreate', async (interaction: any) => {
 	}
 });
 
+mongoose.connect('mongodb://127.0.0.1/index')
+console.log('[+] - Connected to MongoDB.')
+  
 typeof(process.env.TOKEN) === 'string' ? client.login(process.env.TOKEN) : console.log('[x] - Token not set!');

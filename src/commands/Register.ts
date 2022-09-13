@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { PrismaConnection } from "../prisma";
+import { Mongoose } from "../mongoose";
 
 export const Register = {
     data: new SlashCommandBuilder()
@@ -13,15 +13,16 @@ export const Register = {
 
         const usertag = `${member?.user.username}#${member?.user.discriminator}`;
 
-        const prismaClient = new PrismaConnection();
+        const controller = new Mongoose();
 
-        await prismaClient.register(
+        await controller.register(
             `${member?.id}`, 
             usertag, 
             interaction.options.getString('name'), 
             interaction.options.getString('email')
         );
-
-        await prismaClient.close();
+        await interaction.reply({
+            content: `${usertag} registered for attendance.`,
+        })
     } 
 }
